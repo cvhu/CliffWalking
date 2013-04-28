@@ -231,19 +231,43 @@ public class CliffWalking{
 	}
 
 	public void printPolicy(HashMap<String, HashMap<String, Double>> q){
+		HashMap<String, String> trajectory = new HashMap<String, String>();
 		CliffState cs = new CliffState(w,l);
 		cs.reset();
 		while(!cs.terminate()){
 			String s = cs.getState();
 			String a = etaGreedy(q.get(s), 0.0);
+			trajectory.put(s, a.substring(0,1));
 			cs.action(a);
-			System.out.printf("%s-%s", s, a);
+			// System.out.printf("%s-%s", s, a);
 		}
-		System.out.printf("\n");
+		System.out.printf("\n.");
+		for(int i = 0; i < w; i++){
+			System.out.printf("_");
+		}
+		System.out.printf(".\n");
+		for(int j = (l-1); j > -1; j--){
+			System.out.printf("|");
+			for(int i = 0; i < w; i++){
+				String a = trajectory.get(String.format("(%d, %d)", i,j));
+				if(a != null){
+					System.out.printf("%s",a);
+				}else{
+					System.out.printf(" ");
+				}
+			}
+			System.out.printf("|\n");
+		}
+		System.out.printf(".");
+		for(int i = 0; i < w; i++){
+			System.out.printf("_");
+		}
+		System.out.printf(".\n");
+		// System.out.printf("\n");
 	}
 
 	public static void main(String[] args){		
-		CliffWalking cw = new CliffWalking(12, 4);
+		CliffWalking cw = new CliffWalking(12, 8);
 		cw.Sarsa(0.1, 0.5, 1.0, 500);
 		cw.QLearning(0.1, 0.5, 1.0, 500);
 	}
