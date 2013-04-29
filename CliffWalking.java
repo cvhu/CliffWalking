@@ -275,7 +275,7 @@ public class CliffWalking{
 	}
 
 	public static void main(String[] args){		
-		CliffWalking cw = new CliffWalking(12, 4);
+		// CliffWalking cw = new CliffWalking(12, 4);
 		// cw.Sarsa(0.1, 0.01, 1.0, 1000);
 		// cw.Sarsa(0.1, 0.05, 1.0, 1000);
 		// cw.Sarsa(0.1, 0.1, 1.0, 1000);
@@ -299,21 +299,25 @@ public class CliffWalking{
 		// cw.QLearning(0.1, 0.25, 1.0, 1000);
 		// cw.QLearning(0.1, 0.5, 1.0, 1000);
 
-		// cw.QLearning(0.01, 0.05, 1.0, 1000);
-		// cw.QLearning(0.1, 0.05, 1.0, 1000);
-		// cw.QLearning(0.25, 0.05, 1.0, 1000);
-		// cw.QLearning(0.5, 0.05, 1.0, 1000);
+		// cw.QLearning(0.01, 0.5, 1.0, 1000);
+		// cw.QLearning(0.1, 0.5, 1.0, 1000);
+		// cw.QLearning(0.25, 0.5, 1.0, 1000);
+		// cw.QLearning(0.5, 0.5, 1.0, 1000);
 
-		// cw.QLearning(0.01, 0.05, 0.01, 1000);
-		// cw.QLearning(0.01, 0.05, 0.1, 1000);
-		// cw.QLearning(0.01, 0.05, 0.5, 1000);
-		// cw.QLearning(0.01, 0.05, 1.0, 1000);
+		// cw.QLearning(0.01, 0.5, 0.01, 1000);
+		// cw.QLearning(0.01, 0.5, 0.1, 1000);
+		// cw.QLearning(0.01, 0.5, 0.5, 1000);
+		// cw.QLearning(0.01, 0.5, 1.0, 1000);
 
-		HashMap<String, HashMap<String, Double>> qQL = cw.QLearning(0.01, 0.05, 1.0, 1000);
+		// CliffWalking cw = new CliffWalking(12, 4);
+		// CliffWalking cw = new CliffWalking(4, 6);		
+		CliffWalking cw = new CliffWalking(3, 6);
 		HashMap<String, HashMap<String, Double>> qS = cw.Sarsa(0.01, 0.5, 0.5, 1000);
+		HashMap<String, HashMap<String, Double>> qQL = cw.QLearning(0.01, 0.5, 1.0, 1000);		
 
-		cw.printPolicy(qQL);
 		cw.printPolicy(qS);
+		cw.printPolicy(qQL);
+		
 
 	}
 }
