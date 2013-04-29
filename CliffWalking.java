@@ -152,7 +152,7 @@ public class CliffWalking{
 		return maxValue;
 	}
 
-	public void QLearning(double eta, double alpha, double gamma, int n){		
+	public HashMap<String, HashMap<String, Double>> QLearning(double eta, double alpha, double gamma, int n){		
 		HashMap<String, HashMap<String, Double>> q = new HashMap<String, HashMap<String, Double>>();
 		CliffState cs = new CliffState(w, l);
 
@@ -185,12 +185,16 @@ public class CliffWalking{
 				rs += r;
 				// System.out.printf("%d: %s-%s %f\n", i, s, a, qav);
 			}			
-			// System.out.println(rs);
+			if(i==(n-1)){
+				System.out.printf("%d\n",rs);
+			}else{
+				System.out.printf("%d, ",rs);
+			}			
 		}
-		printPolicy(q);
+		return q;
 	}
 
-	public void Sarsa(double eta, double alpha, double gamma, int n){		
+	public HashMap<String, HashMap<String, Double>> Sarsa(double eta, double alpha, double gamma, int n){		
 		HashMap<String, HashMap<String, Double>> q = new HashMap<String, HashMap<String, Double>>();
 		CliffState cs = new CliffState(w, l);
 
@@ -225,9 +229,13 @@ public class CliffWalking{
 				rs += r;
 				// System.out.printf("%d: %s-%s %f\n", i, s, a, qav);
 			}			
-			// System.out.println(rs);
+			if(i==(n-1)){
+				System.out.printf("%d\n",rs);
+			}else{
+				System.out.printf("%d, ",rs);
+			}
 		}
-		printPolicy(q);
+		return q;
 	}
 
 	public void printPolicy(HashMap<String, HashMap<String, Double>> q){
@@ -267,8 +275,45 @@ public class CliffWalking{
 	}
 
 	public static void main(String[] args){		
-		CliffWalking cw = new CliffWalking(12, 8);
-		cw.Sarsa(0.1, 0.5, 1.0, 500);
-		cw.QLearning(0.1, 0.5, 1.0, 500);
+		CliffWalking cw = new CliffWalking(12, 4);
+		// cw.Sarsa(0.1, 0.01, 1.0, 1000);
+		// cw.Sarsa(0.1, 0.05, 1.0, 1000);
+		// cw.Sarsa(0.1, 0.1, 1.0, 1000);
+		// cw.Sarsa(0.1, 0.25, 1.0, 1000);
+		// cw.Sarsa(0.1, 0.5, 1.0, 1000);
+
+
+		// cw.Sarsa(0.01, 0.5, 1.0, 1000);
+		// cw.Sarsa(0.1, 0.5, 1.0, 1000);
+		// cw.Sarsa(0.25, 0.5, 1.0, 1000);
+		// cw.Sarsa(0.5, 0.5, 1.0, 1000);
+
+		// cw.Sarsa(0.01, 0.5, 0.01, 1000);
+		// cw.Sarsa(0.01, 0.5, 0.1, 1000);
+		// cw.Sarsa(0.01, 0.5, 0.5, 1000);
+		// cw.Sarsa(0.01, 0.5, 1.0, 1000);
+
+		// cw.QLearning(0.1, 0.01, 1.0, 1000);
+		// cw.QLearning(0.1, 0.05, 1.0, 1000);
+		// cw.QLearning(0.1, 0.1, 1.0, 1000);
+		// cw.QLearning(0.1, 0.25, 1.0, 1000);
+		// cw.QLearning(0.1, 0.5, 1.0, 1000);
+
+		// cw.QLearning(0.01, 0.05, 1.0, 1000);
+		// cw.QLearning(0.1, 0.05, 1.0, 1000);
+		// cw.QLearning(0.25, 0.05, 1.0, 1000);
+		// cw.QLearning(0.5, 0.05, 1.0, 1000);
+
+		// cw.QLearning(0.01, 0.05, 0.01, 1000);
+		// cw.QLearning(0.01, 0.05, 0.1, 1000);
+		// cw.QLearning(0.01, 0.05, 0.5, 1000);
+		// cw.QLearning(0.01, 0.05, 1.0, 1000);
+
+		HashMap<String, HashMap<String, Double>> qQL = cw.QLearning(0.01, 0.05, 1.0, 1000);
+		HashMap<String, HashMap<String, Double>> qS = cw.Sarsa(0.01, 0.5, 0.5, 1000);
+
+		cw.printPolicy(qQL);
+		cw.printPolicy(qS);
+
 	}
 }
