@@ -11,7 +11,6 @@
 		Cropped from the original figure in the textbook, the figure above illustrates the world of Cliff Walking, which consists of a two dimensional grids with the start on the left bottom, goal on the left bottom, and cliff at the bottom between the start and the goal. The agent is rewarded -1 for each step taken and -100 if ends up at any of the cliff states, which brings the agent back to the start. In the original example, the author chooses eta = 0.1 for eta-greedy Sarsa and Q-Learning, but didn't specify which alpha and gamma were used. In this work, we wish to experiment with various learning parameters such as eta (exploration), gamma (discount rate) and alpha (step size) and see how they affect the learning performance.
 	</p>
 </div>
-
 <div>
 	<h3> Methods </h3>
 	<p>
@@ -46,7 +45,6 @@
 	</p>
 	<p>
 		<b>Various eta on Sarsa, with alpha fixed at 0.5, gamma fixed at 1.0:</b>
-
 		<br>
 		<img src="fig/sarsa_eta_original.png" width="300px">
 		<img src="fig/sarsa_eta_smoothed.png" width="300px">
@@ -62,13 +60,11 @@
 	</p>
 	<p>
 		<b>Various alpha on Q-Learning, with eta fixed at 0.1, gamma fixed at 1.0:</b>
-
 		<br>
 		<img src="fig/qlearning_alpha_original.png" width="300px">
 		<img src="fig/qlearning_alpha_smoothed.png" width="300px">
 		<br>
 		We choose alpha=0.5 as the best learning curve and advance to the next round.
-
 	</p>
 	<p>
 		<b>Various eta on Q-Learning, with alpha fixed at 0.5, gamma fixed at 1.0:</b>
@@ -96,9 +92,8 @@
 		We can see that Q-Learning actually outperforms Sarsa in this case, as opposed to the other way around covered in the textbook. This is mainly due to the small exploration parameter eta=0.01 we choose, compared to the larger eta=0.1 used by the textbook, in which case the more conservative Sarsa outperforms Q-Learning.
 	</p>
 	<p>
-
-		Next, we illustrate the optimal policy obtained by Sarsa and Q-Learning in various dimensions (u:up, d:down, r:right, l:left):
-		<pre>
+	Next, we illustrate the optimal policy obtained by Sarsa and Q-Learning in various dimensions (u:up, d:down, r:right, l:left):
+<pre>
 12x4
 Sarsa
 .____________.
@@ -156,12 +151,10 @@ Q-Learning
 |rrd|
 |u  |
 .___.
-
-		</pre>
-		As expected, Sarsa is generally more conservative in that it always goes up at least one level than the policy of Q-Learning. However, instead of going all the way to the top row, Sarsa only goes two levels above the cliff, which is most likely due to our small eta (lower chance of risky exploration.)
+</pre>
+As expected, Sarsa is generally more conservative in that it always goes up at least one level than the policy of Q-Learning. However, instead of going all the way to the top row, Sarsa only goes two levels above the cliff, which is most likely due to our small eta (lower chance of risky exploration.)
 	</p>
 </div>
-
 <div>
 	<h3> Conclusion </h3>
 	<p>
